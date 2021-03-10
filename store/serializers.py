@@ -15,7 +15,7 @@ class ProductSerializer(HyperlinkedModelSerializer):
 
 
 # Сериалайзер для модели заказов
-class OrdersSerializer(HyperlinkedModelSerializer):
+class OrdersSerializer (HyperlinkedModelSerializer):
 
     class Meta:
         model = Orders

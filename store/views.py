@@ -47,12 +47,13 @@ class OrderViewSet(viewsets.ModelViewSet):
             self.permission_classes = [ShopAssistantPermission, ]
         else:
             self.permission_classes = [AccountantPermission, ]
-        return super(OrderViewSet, self).get_permissions()
+        return super().get_permissions()
 
     def perform_create(self, serializer):
         if self.request.user.groups == Group.objects.get(name='cashier') \
                 and self.request.data['status'] == 'performed':
             raise ValueError('Only shop assistant can perform the order!')
+        super(OrderViewSet, self).perform_create(serializer)
 
     def perform_update(self, serializer):
         if self.request.user.groups == Group.objects.get(name='cashier') \
@@ -61,7 +62,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         elif self.request.user.groups == Group.objects.get(name='shop_assistant') \
                 and self.request.data['status'] != 'performed':
             raise ValueError('Only cashier can set this status!')
-        serializer.save(status=self.request.data['status'])
+        super(OrderViewSet, self).perform_update(serializer)
 
 
 class AccountViewSet(viewsets.ModelViewSet):
