@@ -20,42 +20,51 @@
   ### AUTH
   
   POST: rest-auth/registration/ - регистрация нового User. Поля: 
-                                      - email: EmailField
-                                      - password1: CharField
-                                      - password2: CharField
+  - email: EmailField
+  - password1: CharField
+  - password2: CharField
   
   POST: rest-auth/login/ - вход в аккаунт(получение токена). Поля: 
-                                      - email: EmailField
-                                      - password: CharField
+  - email: EmailField
+  - password: CharField
   
   POST: rest-auth/logout/ - выход из аккаунта(стирает сессию).
   
   GET: rest-auth/user - просмотр профайла пользователя
   
   PUT: rest-auth/user - редактирование пользователя. Поля: 
-                                      + email: EmailField
-                                      + staff_name: CharField
-                                      + groups: Group (shop_assistant, accountant, cashier)
+  - email: EmailField
+  - staff_name: CharField
+  - groups: Group (shop_assistant, accountant, cashier)
                                       
 ---
   
   ### Для Cashiers ###
 GET, POST: products/ - список продуктов. Поля:  
-                                      + product_name: CharField
-                                      + price: IntegerField
-                                      + delivery_date: DateField ("%y-%m-%d")
+- product_name: CharField
+- price: IntegerField
+- delivery_date: DateField ("%y-%m-%d")
 
-GET, PUT: products/<int:id> - продукт по id. Поля:  
-                                      + product_name: CharField
-                                      + price: IntegerField
-                                      + delivery_date: DateField ("%y-%m-%d")
+GET, PUT, DELETE: products/<int:id> - продукт по id. Поля (PUT):  
+- product_name: CharField
+- price: IntegerField
+- delivery_date: DateField ("%y-%m-%d")
 
-POST, GET: orders/ - список заказов.Поля:  
-                                      + product_id: Product (id)
-                                      + order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
-                                      + status: CharField(choises): added, paid
+POST, GET: orders/ - список заказов. Поля:  
+- product_id: Product (id)
+- order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
+- status: CharField(choises): added, paid
 
-POST, GET: orders/ - список заказов.Поля:  
-                                      + product_id: Product (id)
-                                      + order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
-                                      + status: CharField(choises): added, paid
+PUT, GET, DELETE: orders/<int:id> - заказ по id. Поля (PUT):  
+- product_id: Product (id)
+- order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
+- status: CharField(choises): added, paid
+
+POST, GET: accounts/ - список счетов. Поля (POST):  
+- order_id: Product (id)
+- account_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
+
+PUT, GET, DELETE: orders/<int:id> - заказ по id. Поля (PUT):  
+- product_id: Product (id)
+- order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
+- status: CharField(choises): added, paid
