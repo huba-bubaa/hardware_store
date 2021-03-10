@@ -56,6 +56,8 @@ POST, GET: **orders/** - список заказов. Поля:
 - order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
 - status: CharField(choises): added, paid
 
+GET: **orders/?order_datetime_gth=YYYY:MM:ddTHH:mm&order_datetime_lth=YYYY:MM:ddTHH:mm** - фильрация заказов по дате
+
 PUT, GET: **orders/<int:id>** - заказ по id. Поля (PUT):  
 - product_id: Product (id)
 - order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
@@ -85,6 +87,8 @@ GET, PUT, DELETE: **products/<int:id>** - продукт по id. Поля (PUT)
 
 GET: **orders/** - список заказов.
 
+GET: **orders/?order_datetime_gth=YYYY:MM:ddTHH:mm&order_datetime_lth=YYYY:MM:ddTHH:mm** - фильрация заказов по дате
+
 PUT, GET: **orders/<int:id>** - заказ по id. Поля (PUT):  
 - product_id: Product (id)
 - order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
@@ -104,5 +108,7 @@ GET, PUT, DELETE: **products/<int:id>** - продукт по id. Поля (PUT)
 - delivery_date: DateField ("%y-%m-%d")
 
 GET: **orders/** - список заказов.
+
+GET: **orders/?order_datetime_gth=YYYY:MM:ddTHH:mm&order_datetime_lth=YYYY:MM:ddTHH:mm** - фильрация заказов по дате
 
 GET: **orders/<int:id>** - заказ по id.
