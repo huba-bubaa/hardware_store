@@ -55,7 +55,7 @@ POST, GET: orders/ - список заказов. Поля:
 - order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
 - status: CharField(choises): added, paid
 
-PUT, GET, DELETE: orders/<int:id> - заказ по id. Поля (PUT):  
+PUT, GET: orders/<int:id> - заказ по id. Поля (PUT):  
 - product_id: Product (id)
 - order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
 - status: CharField(choises): added, paid
@@ -64,7 +64,41 @@ POST, GET: accounts/ - список счетов. Поля (POST):
 - order_id: Product (id)
 - account_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
 
-PUT, GET, DELETE: orders/<int:id> - заказ по id. Поля (PUT):  
+PUT, GET, DELETE: accounts/<int:id> - счет по id. Поля (PUT):  
+- order_id: Product (id)
+- account_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
+
+---
+  
+  ### Для Shop Assistant ###
+GET, POST: products/ - список продуктов. Поля:  
+- product_name: CharField
+- price: IntegerField
+- delivery_date: DateField ("%y-%m-%d")
+
+GET, PUT, DELETE: products/<int:id> - продукт по id. Поля (PUT):  
+- product_name: CharField
+- price: IntegerField
+- delivery_date: DateField ("%y-%m-%d")
+
+GET: orders/ - список заказов.
+
+PUT, GET: orders/<int:id> - заказ по id. Поля (PUT):  
 - product_id: Product (id)
 - order_datetime: DateTimeField ("YYY-MM-ddTHH:mm")
-- status: CharField(choises): added, paid
+- status: CharField(choises): performed
+
+
+### Для Accountant ###
+GET, POST: products/ - список продуктов. Поля:  
+- product_name: CharField
+- price: IntegerField
+- delivery_date: DateField ("%y-%m-%d")
+
+GET, PUT, DELETE: products/<int:id> - продукт по id. Поля (PUT):  
+- product_name: CharField
+- price: IntegerField
+- delivery_date: DateField ("%y-%m-%d")
+
+GET: orders/ - список заказов.
+GET: orders/<int:id> - заказ по id.
