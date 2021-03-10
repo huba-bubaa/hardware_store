@@ -21,25 +21,27 @@ def count_discount(price, delivery):
     return [0, price]
 
 
-# вью для просмотра, добавления, удаления, редактирования
+# вью для просмотра, добавления, удаления, редактирования продуктов
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, ]
 
-    def perform_create(self, serializer):
+    def perform_create(self, serializer): # расчет и заполнение скидки и цены со скидкой
         price = self.request.data['price']
         delivery = self.request.data['delivery_date']
         count = count_discount(price, delivery)
         serializer.save(discount=count[0], price_with_discount=count[1])
 
 
+# вью для просмотра, добавления, редактирования заказов
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Orders.objects.all()
     serializer_class = OrdersSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = OrdersFilter
 
+    # в зависимости от группы юзера, привязывается permission class
     def get_permissions(self):
         if self.request.user.groups == Group.objects.get(name='cashier'):
             self.permission_classes = [CashierPermission, ]
@@ -49,12 +51,14 @@ class OrderViewSet(viewsets.ModelViewSet):
             self.permission_classes = [AccountantPermission, ]
         return super().get_permissions()
 
+    # касир при создании может ставить только статусы added, paid
     def perform_create(self, serializer):
         if self.request.user.groups == Group.objects.get(name='cashier') \
                 and self.request.data['status'] == 'performed':
             raise ValueError('Only shop assistant can perform the order!')
         super(OrderViewSet, self).perform_create(serializer)
 
+    # касир при редактировании может ставить только статусы added, paid, а консультант только performed
     def perform_update(self, serializer):
         if self.request.user.groups == Group.objects.get(name='cashier') \
                 and self.request.data['status'] == 'performed':
@@ -65,6 +69,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         super(OrderViewSet, self).perform_update(serializer)
 
 
+# вью для просмотра, добавления, редактирования счетов
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer

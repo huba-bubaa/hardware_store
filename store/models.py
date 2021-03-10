@@ -23,14 +23,16 @@ class Products(models.Model):
         return self.product_name
 
 
-# модель заказов, содержит ссылку на продукт, дату заказа и статус заказа(добавлен, обработан, оплачен)
+# модель заказов, содержит ссылку на продукт, дату заказа и статус заказа(добавлен, обработан,
+# оплачен)
 class Orders(models.Model):
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
     order_datetime = models.DateTimeField()
     status = models.CharField(max_length=15, choices=STATUS)
 
     def __str__(self):
-        return self.product_id.product_name + '  Order date: ' + str(self.order_datetime) + '  Status:' + self.status
+        return self.product_id.product_name + '  Order date: ' + str(self.order_datetime) \
+               + '  Status:' + self.status
 
 
 # модель счетов, содержит ссылку на заказ и время оформления счета
