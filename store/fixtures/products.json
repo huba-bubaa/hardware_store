@@ -1,0 +1,82 @@
+[
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Холодильник BOSCH KGN39VL316",
+      "price": "16799",
+      "delivery_date": "2021-03-01"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Фен ROWENTA CV5912",
+      "price": "899",
+      "delivery_date": "2021-02-03"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Мультиварка MOULINEX Fuzzy Logic MK708832",
+      "price": "2899",
+      "delivery_date": "2021-03-01"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Смартфон SAMSUNG Galaxy S21+ 8/128GB Phantom Black",
+      "price": "31999",
+      "delivery_date": "2021-01-28"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Смартфон OPPO Reno 4 Pro 8/256GB Blue",
+      "price": "17000",
+      "delivery_date": "2021-01-28"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Смартфон SAMSUNG Galaxy A31 4/64GB Blue",
+      "price": "6999",
+      "delivery_date": "2021-01-28"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Телевизор SAMSUNG UE43TU7100UXUA",
+      "price": "14599",
+      "delivery_date": "2020-12-05"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Телевизор TCL 55P715",
+      "price": "12999",
+      "delivery_date": "2020-12-05"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Телевизор FRAME SAMSUNG QE50LS03TAUXUA",
+      "price": "30999",
+      "delivery_date": "2021-01-08"
+    }
+  },
+  {
+    "model": "store.products",
+    "fields": {
+      "product_name": "Кофемашина SIEMENS TI351209RW",
+      "price": "18999",
+      "delivery_date": "2021-01-08"
+    }
+  }
+]
